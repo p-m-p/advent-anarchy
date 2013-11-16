@@ -27,7 +27,7 @@ var AAControllers = angular.module('AAControllers', [])
 
     // Opens a tile during a turn and checks for a match on second tile
     $scope.open = function (tile) {
-      if (suspended) {
+      if (suspended || tile.active) {
         return;
       }
 
@@ -44,7 +44,7 @@ var AAControllers = angular.module('AAControllers', [])
           }
 
           resetTurn();
-        }, 1000);
+        }, 750);
       }
     }
   }]);

@@ -8,9 +8,13 @@
 </head>
   <body>
     <div id="game-board" ng-controller="GameBoardCtrl">
-      <div class="game-tile {{tile.done ? 'done' : ''}}" ng-repeat="tile in tiles" ng-click="open(tile)">
-        <span>{{$index + 1}}</span>
-        <img ng-src="app/img/{{tile.img}}" ng-show="tile.active">
+      <div class="game-tile {{tile.done ? 'done' : ''}}" ng-repeat="tile in tiles">
+        <div class="inner">
+          <img class="prize" ng-src="app/img/{{tile.img}}" ng-show="tile.active">
+          <div class="door {{tile.active ? 'open' : ''}}">
+            <span ng-click="open(tile)">{{$index + 1}}</span>
+          </div>
+        </div>
       </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js" type="text/javascript" charset="utf-8"></script>

@@ -1,8 +1,12 @@
-@import "compass/reset";
+@import 'compass/reset', 'compass/css3';
 
 $tile_size: 100px;
 $tile_row_count: 6;
 $tile_spacing: 30px;
+
+body {
+  font: 0.65%/1 Hevetica, Arial, sans-serif;
+}
 
 #game-board {
   margin: 40px auto;
@@ -13,12 +17,52 @@ $tile_spacing: 30px;
 
 .game-tile {
   float: left;
-  width: $tile_size - 2;
-  height: $tile_size - 2;
-  margin: $tile_spacing;
-  border: solid 1px red;
+  width: $tile_size;
+  height: $tile_size;
+  padding: $tile_spacing;
+  overflow: hidden;
+  @include perspective(800px);
 
   &.done {
     opacity: 0.1;
+  }
+
+  .prize {
+    display: block;
+    width: $tile_size - 40;
+    height: $tile_size - 40;
+    padding: 20px;
+  }
+
+  .inner {
+    position: relative;
+    width: $tile_size;
+    left: -$tile_size;
+    padding-left: $tile_size;
+  }
+
+  .door {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: $tile_size;
+    @include transition(transform, 0.2s);
+
+    span {
+      cursor: pointer;
+      display: block;
+      width: $tile_size;
+      text-align: center;
+      color: white;
+      background: #d3d3d3;
+      font-size: $tile_size / 2;
+      font-weight: 300;
+      line-height: ($tile_size / 2);
+      padding: ($tile_size / 4) 0;
+    }
+
+    &.open {
+      @include transform( rotateY(-100deg) );
+    }
   }
 }
