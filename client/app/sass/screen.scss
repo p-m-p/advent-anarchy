@@ -1,0 +1,24 @@
+@import "compass/reset";
+
+$tile_size: 100px;
+$tile_row_count: 6;
+$tile_spacing: 30px;
+
+#game-board {
+  margin: 40px auto;
+  width: ($tile_size * $tile_row_count) + (($tile_row_count * 2) * $tile_spacing);
+  border: solid 1px #ededed;
+  overflow: hidden;
+}
+
+.game-tile {
+  float: left;
+  width: $tile_size - 2;
+  height: $tile_size - 2;
+  margin: $tile_spacing;
+  border: solid 1px red;
+
+  &.done {
+    opacity: 0.1;
+  }
+}
