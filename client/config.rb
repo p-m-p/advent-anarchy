@@ -1,10 +1,10 @@
 # Require any additional compass plugins here.
 
 # Set this to the root of your project when deployed:
-http_path = "/"
+http_path = "/advent-anarchy/client/"
 css_dir = "app/css"
 sass_dir = "app/sass"
-images_dir = "app/assets/images"
+images_dir = "app/img"
 javascripts_dir = "app/js"
 
 # You can select your preferred output style here (can be overridden via the command line):

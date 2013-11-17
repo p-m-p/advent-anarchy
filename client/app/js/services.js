@@ -61,4 +61,24 @@ angular.module('AAServices', [])
   }
 
   return { create: createTiles };
+})
+
+.factory('Score', function () {
+  var total = 0;
+
+  return {
+    set: function (score) {
+      total = score;
+      return this.get();
+    },
+
+    get: function () {
+      return total;
+    },
+
+    boost: function (amount, multiplier) {
+      total += ( amount * (multiplier || 1) )
+      return this.get();
+    }
+  };
 });

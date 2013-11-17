@@ -5,13 +5,37 @@ $tile_row_count: 6;
 $tile_spacing: 30px;
 
 body {
-  font: 0.65%/1 Hevetica, Arial, sans-serif;
+  font: 0.65%/1 'Ribeye', Hevetica, Arial, sans-serif;
+  color: white;
+  background: image-url('christmas_winter_vector-2560x1600.jpg') center bottom no-repeat;
+}
+
+header {
+  padding: 0 0 40px;
+  position: relative;
+
+  h1 {
+    font-size: 48px;
+    @include text-shadow(3px 3px #000);
+  }
+}
+
+#score {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  font-size: 24px;
+  background-color: #000;
+}
+
+#game {
+  margin: 40px auto;
+  width: ($tile_size * $tile_row_count) + (($tile_row_count * 2) * $tile_spacing);
 }
 
 #game-board {
-  margin: 40px auto;
-  width: ($tile_size * $tile_row_count) + (($tile_row_count * 2) * $tile_spacing);
-  border: solid 1px #ededed;
+  background: image-url('dark-wood.jpg') repeat;
   overflow: hidden;
 }
 
@@ -24,7 +48,7 @@ body {
   @include perspective(800px);
 
   &.done {
-    opacity: 0.1;
+    opacity: 0.4;
   }
 
   .prize {
@@ -32,6 +56,7 @@ body {
     width: $tile_size - 20;
     height: $tile_size - 20;
     padding: 10px;
+    background-color: white;
   }
 
   .inner {
@@ -53,8 +78,10 @@ body {
       display: block;
       width: $tile_size;
       text-align: center;
-      color: white;
-      background: #d3d3d3;
+      color: #ededed;
+      @include text-shadow(2px 2px 2px #222);
+      @include box-shadow(0 0 20px #000);
+      background: image-url('door-wood.jpg') repeat;
       font-size: $tile_size / 2;
       font-weight: 300;
       line-height: ($tile_size / 2);
@@ -66,3 +93,4 @@ body {
     }
   }
 }
+
