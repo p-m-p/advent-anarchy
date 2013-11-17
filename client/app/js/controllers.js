@@ -92,5 +92,10 @@ var AAControllers = angular.module('AAControllers', [])
 
     $scope.tiles = gameTiles;
     $scope.score = Score.get();
-    GameSounds.background();
+    GameSounds
+      .loadMedia()
+      .then(function () {
+        GameSounds.background();
+        $scope.assetsLoaded = true;
+      });
   }]);

@@ -83,34 +83,61 @@ angular.module('AAServices', [])
   };
 })
 
-.factory('GameSounds', function () {
-  // FIXME Need to load these before letting game start
-  var SOUNDS = { // FIXME use compressed versions not wav
-      tileMatch: new Audio('app/audio/Level Up Positive 01.wav')
-    , tileSelect: new Audio('app/audio/Short UI Click1_2.wav')
-    , background: new Audio('app/audio/Small Christmas Music Loop 1 - Jingle Bells.wav')
-  };
+.factory('GameSounds', ['$q', function ($q) {
+  var soundFiles = {
+          tileMatch: 'app/audio/Level Up Positive 01'
+        , tileSelect: 'app/audio/Short UI Click1_2'
+        , background: 'app/audio/Small Christmas Music Loop 1 - Jingle Bells'
+      }
+    , audioPlayers = {}
+    , fileType = (function () {
+        var a = new Audio;
 
-  function play(sound) {
-    var audio = SOUNDS[sound];
+        if (a.canPlayType('audio/mp4')) {
+          return 'mp4';
+        }
 
-    audio.play();
-    return audio;
-  }
+        return 'ogg';
+      }());
 
   return {
+    play: function (sound) {
+      var audio = audioPlayers[sound];
+
+      audio.play();
+      return audio;
+    },
+
     background: function () {
-      var audio = play('background');
+      var audio = this.play('background');
       audio.loop = true
       audio.volume = 0.4;
     },
 
     tileMatch: function () {
-      play('tileMatch');
+      this.play('tileMatch');
     },
 
     tileSelect: function () {
-      play('tileSelect')
+      this.play('tileSelect')
+    },
+
+    loadMedia: function () {
+      var deferred = $q.defer()
+        , toLoad = Object.keys(soundFiles).length;
+
+      angular.forEach(soundFiles, function (file, name) {
+        var a = audioPlayers[name] = new Audio(soundFiles[name] +'.'+ fileType);
+        a.addEventListener('canplay', function () {
+          toLoad -= 1;
+
+          if (toLoad === 0) {
+            deferred.resolve();
+          }
+        }, false);
+      });
+
+      return deferred.promise;
     }
   };
-});
+}]);

@@ -72,12 +72,12 @@ body {
 
 /* line 13, ../sass/screen.scss */
 header {
-  padding: 0 0 40px;
+  padding: 0 0 20px;
   position: relative;
 }
 /* line 17, ../sass/screen.scss */
 header h1 {
-  font-size: 48px;
+  font-size: 36px;
   text-shadow: 3px 3px black;
 }
 
@@ -93,8 +93,8 @@ header h1 {
 
 /* line 32, ../sass/screen.scss */
 #game {
-  margin: 40px auto;
-  width: 960px;
+  margin: 20px auto 40px;
+  width: 900px;
 }
 
 /* line 37, ../sass/screen.scss */
@@ -108,7 +108,7 @@ header h1 {
   float: left;
   width: 100px;
   height: 100px;
-  padding: 30px;
+  padding: 25px;
   overflow: hidden;
   -webkit-perspective: 800px;
   -moz-perspective: 800px;
