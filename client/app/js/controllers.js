@@ -1,7 +1,12 @@
 var AAControllers = angular.module('AAControllers', [])
 
-.controller('GameCtrl', ['$scope', '$timeout', 'GameTiles', 'Score',
-  function ($scope, $timeout, GameTiles, Score) {
+.controller('GameCtrl', [
+    '$scope'
+  , '$timeout'
+  , 'GameTiles'
+  , 'Score'
+  , 'GameSounds'
+  , function ($scope, $timeout, GameTiles, Score, GameSounds) {
     var gameTiles = GameTiles.create(24)
       , suspended = false
       , totalTries = 0
@@ -21,6 +26,7 @@ var AAControllers = angular.module('AAControllers', [])
 
       triesBeforeMatch = 0;
       Score.boost(10, Math.floor(1000 / totalTries));
+      GameSounds.tileMatch();
     }
 
     function hasWon() {
@@ -60,6 +66,7 @@ var AAControllers = angular.module('AAControllers', [])
 
       turn.push(tile);
       tile.active = true;
+      GameSounds.tileSelect();
 
       // Second tile being opened
       if (turn.length === 2) {
@@ -85,4 +92,5 @@ var AAControllers = angular.module('AAControllers', [])
 
     $scope.tiles = gameTiles;
     $scope.score = Score.get();
+    GameSounds.background();
   }]);

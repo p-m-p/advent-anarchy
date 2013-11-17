@@ -81,4 +81,36 @@ angular.module('AAServices', [])
       return this.get();
     }
   };
+})
+
+.factory('GameSounds', function () {
+  // FIXME Need to load these before letting game start
+  var SOUNDS = { // FIXME use compressed versions not wav
+      tileMatch: new Audio('app/audio/Level Up Positive 01.wav')
+    , tileSelect: new Audio('app/audio/Short UI Click1_2.wav')
+    , background: new Audio('app/audio/Small Christmas Music Loop 1 - Jingle Bells.wav')
+  };
+
+  function play(sound) {
+    var audio = SOUNDS[sound];
+
+    audio.play();
+    return audio;
+  }
+
+  return {
+    background: function () {
+      var audio = play('background');
+      audio.loop = true
+      audio.volume = 0.4;
+    },
+
+    tileMatch: function () {
+      play('tileMatch');
+    },
+
+    tileSelect: function () {
+      play('tileSelect')
+    }
+  };
 });
