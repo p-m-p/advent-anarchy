@@ -96,9 +96,9 @@ body {
 /* line 30, ../sass/screen.scss */
 .game-tile .prize {
   display: block;
-  width: 60px;
-  height: 60px;
-  padding: 20px;
+  width: 80px;
+  height: 80px;
+  padding: 10px;
 }
 /* line 37, ../sass/screen.scss */
 .game-tile .inner {

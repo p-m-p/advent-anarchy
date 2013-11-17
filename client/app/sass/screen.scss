@@ -29,9 +29,9 @@ body {
 
   .prize {
     display: block;
-    width: $tile_size - 40;
-    height: $tile_size - 40;
-    padding: 20px;
+    width: $tile_size - 20;
+    height: $tile_size - 20;
+    padding: 10px;
   }
 
   .inner {
